@@ -22,7 +22,7 @@ struct CustomAlertHandler<AlertContent, AlertActions>: ViewModifier where AlertC
         if let windowScene = windowScene {
             content
                 .disabled(isPresented)
-                .windowCover("CustomAlert", isPresented: $isPresented, on: windowScene) {
+                .windowCover(UUID().uuidString, isPresented: $isPresented, on: windowScene) {
                     CustomAlert(title: title, isPresented: $isPresented, content: alertContent, actions: alertActions)
                         .transformEnvironment(\.self) { environment in
                             environment.isEnabled = true
@@ -35,7 +35,7 @@ struct CustomAlertHandler<AlertContent, AlertActions>: ViewModifier where AlertC
         } else {
             content
                 .disabled(isPresented)
-                .windowCover("CustomAlert", isPresented: $isPresented) {
+                .windowCover(UUID().uuidString, isPresented: $isPresented) {
                     CustomAlert(title: title, isPresented: $isPresented, content: alertContent, actions: alertActions)
                         .transformEnvironment(\.self) { environment in
                             environment.isEnabled = true
